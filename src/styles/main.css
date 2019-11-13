@@ -13,3 +13,17 @@ body {
     height: 100%;
     position: relative;
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.dislayed {
+    display: block;
+}

@@ -1,42 +1,21 @@
-/* eslint-disable no-new */
-/* eslint-disable no-console */
+import '../styles/login.css';
 import '../styles/main.css';
-// declaration Global variables
-const toDo = [];
-const input = document.getElementById('ToDo');
-const submit = document.getElementById('submit');
-const addDatabase = () => {
-  new Promise((resolve, reject) => {
-    const runCode = true;
-    if (runCode) setTimeout(resolve, 4000);
-    else reject();
-  });
+import Firebase from './Firebase';
+
+const btnLoginGoogle = document.getElementById('btnLoginGoogle');
+const btnLogout = document.getElementById('btnLogout');
+
+const initApp = async () => {
+  Firebase.isLogedIn();
 };
-const addCalendar = () => {
-  new Promise((resolve, reject) => {
-    const runCode = true;
-    if (runCode) setTimeout(resolve, 2000);
-    else reject();
-  });
-};
-const mailUser = () => {
-  new Promise((resolve, reject) => {
-    const runCode = true;
-    if (runCode) setTimeout(resolve, 1000);
-    else reject();
-  });
-};
-const runPromises = async () => {
-  await addDatabase();
-  console.log('added to db');
-  await addCalendar();
-  console.log('added to calendar');
-  await mailUser();
-  console.log('mailed user');
-};
-submit.addEventListener('click', () => {
-  runPromises();
-  const val = input.value;
-  toDo.push(val);
-  console.log(toDo);
+
+initApp();
+
+btnLoginGoogle.addEventListener('click', (e) => {
+  e.preventDefault();
+  Firebase.loginWithGoogle();
+});
+btnLogout.addEventListener('click', (e) => {
+  e.preventDefault();
+  Firebase.logout();
 });
